@@ -1,13 +1,12 @@
 package com.duong.mycase41.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-@Table(name = "teacher")
-public class Teacher {
+@Table(name = "ministry")
+public class Ministry {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     @OneToOne
     private AppUser appUser;
@@ -19,27 +18,11 @@ public class Teacher {
     private Gender gender;
     private String dateOfBirth;
     private String address;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "teachers_classes", joinColumns = {@JoinColumn(name = "teacher_id")},
-            inverseJoinColumns = {@JoinColumn(name = "classes_id")})
-    private Set<Classes> classesSet;
 
-    public Teacher() {
+    public Ministry() {
     }
 
-    public Teacher(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Set<Classes> classesSet) {
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classesSet = classesSet;
-    }
-
-    public Teacher(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Set<Classes> classesSet) {
+    public Ministry(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address) {
         this.id = id;
         this.appUser = appUser;
         this.fullName = fullName;
@@ -49,7 +32,17 @@ public class Teacher {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
-        this.classesSet = classesSet;
+    }
+
+    public Ministry(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address) {
+        this.appUser = appUser;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
     }
 
     public Long getId() {
@@ -122,13 +115,5 @@ public class Teacher {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Set<Classes> getClassesSet() {
-        return classesSet;
-    }
-
-    public void setClassesSet(Set<Classes> classesSet) {
-        this.classesSet = classesSet;
     }
 }

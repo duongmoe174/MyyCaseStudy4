@@ -15,34 +15,47 @@ public class Student {
     private String phoneNumber;
     private String avatar;
     private String email;
+    @OneToOne
+    private Gender gender;
     private String dateOfBirth;
     private String address;
     @ManyToOne
     private Classes classes;
+    @ManyToOne
+    private Teacher teacher;
+    @OneToOne
+    private Tuition tuition;
+
     public Student() {
     }
 
-    public Student(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, String dateOfBirth, String address, Classes classes) {
+    public Student(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Teacher teacher, Tuition tuition) {
+        this.appUser = appUser;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.email = email;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.classes = classes;
+        this.teacher = teacher;
+        this.tuition = tuition;
+    }
+
+    public Student(Long id, AppUser appUser, String fullName, String phoneNumber, String avatar, String email, Gender gender, String dateOfBirth, String address, Classes classes, Teacher teacher, Tuition tuition) {
         this.id = id;
         this.appUser = appUser;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.avatar = avatar;
         this.email = email;
+        this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.classes = classes;
-    }
-
-    public Student(AppUser appUser, String fullName, String phoneNumber, String avatar, String email, String dateOfBirth, String address, Classes classes) {
-        this.appUser = appUser;
-        this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.email = email;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.classes = classes;
+        this.teacher = teacher;
+        this.tuition = tuition;
     }
 
     public Long getId() {
@@ -93,6 +106,14 @@ public class Student {
         this.email = email;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     public String getDateOfBirth() {
         return dateOfBirth;
     }
@@ -115,5 +136,21 @@ public class Student {
 
     public void setClasses(Classes classes) {
         this.classes = classes;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public Tuition getTuition() {
+        return tuition;
+    }
+
+    public void setTuition(Tuition tuition) {
+        this.tuition = tuition;
     }
 }
