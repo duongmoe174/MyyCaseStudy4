@@ -1,10 +1,14 @@
 package com.duong.mycase41.controller;
 import com.duong.mycase41.model.AppUser;
 import com.duong.mycase41.model.DTO.JwtResponse;
+import com.duong.mycase41.model.Student;
 import com.duong.mycase41.model.Teacher;
+import com.duong.mycase41.model.Transcript;
 import com.duong.mycase41.service.appuser.IAppUserService;
 import com.duong.mycase41.service.jwt.JwtService;
+import com.duong.mycase41.service.student.IStudentService;
 import com.duong.mycase41.service.teacher.ITeacherService;
+import com.duong.mycase41.service.transcript.ITranscriptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,5 +69,18 @@ public class AuthController {
     @PostMapping("/create-teacher")
     public ResponseEntity<Teacher> createTeacher(@ModelAttribute Teacher teacher) {
         return new ResponseEntity<>(teacherService.save(teacher), HttpStatus.CREATED);
+    }
+    @Autowired
+    private IStudentService studentService;
+    @PostMapping("/create-student")
+    public ResponseEntity<Student> createStudent(@ModelAttribute Student student) {
+        return new ResponseEntity<>(studentService.save(student), HttpStatus.CREATED);
+    }
+
+    @Autowired
+    private ITranscriptService transcriptService;
+    @PostMapping ("/create-transcript")
+    public ResponseEntity<Transcript> createTranscript (@ModelAttribute Transcript transcript) {
+        return new ResponseEntity<>(transcriptService.save(transcript), HttpStatus.CREATED);
     }
 }
